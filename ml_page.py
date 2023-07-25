@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-
+import pandas as pd
 #load ML package
 import pickle
 import os
@@ -93,7 +93,7 @@ def run_ml_app():
             'Occupation': occupation,
         }
 
-    st.write(result)
+    # st.write(result)
 
     # 0 : Age                              
     # 1 : Sleep Duration                   
@@ -151,12 +151,12 @@ def run_ml_app():
         elif key == 'Occupation':
             data['Occupation_' + value] = 1
             
-    st.write(data)
+    # st.write(data)
     encoded_result = []
     for item in data.values():
         encoded_result.append(item)
 
-    st.write(encoded_result)
+    # st.write(encoded_result)
 
     ## prediction section
     st.subheader('Prediction Result')
@@ -166,10 +166,12 @@ def run_ml_app():
     model = load_model("pipelineLogReg.sav")
 
     single_sample = model['scaler'].transform(single_sample)
+    features = ['Age', 'Sleep Duration', 'Quality of Sleep', 'Physical Activity Level', 'Stress Level', 'BMI Category', 'Heart Rate', 'Daily Steps', 'Blood Pressure Systolic', 'Blood Pressure Diastolic', 'Gender_Male', 'Occupation_Accountant', 'Occupation_Doctor', 'Occupation_Engineer', 'Occupation_Lawyer', 'Occupation_Manager', 'Occupation_Nurse', 'Occupation_Sales Representative', 'Occupation_Salesperson', 'Occupation_Scientist', 'Occupation_Software Engineer', 'Occupation_Teacher']
+    single_sample = pd.DataFrame(np.array(single_sample).reshape(1,-1), columns=features)
     prediction = model['model'].predict(single_sample)
     pred_proba = model['model'].predict_proba(single_sample)
-    st.write(prediction)
-    st.write(pred_proba)
+    # st.write(prediction)
+    # st.write(pred_proba)
 
     pred_probability_score = {
         'None':round(pred_proba[0][0]*100,4),
