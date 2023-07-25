@@ -163,10 +163,11 @@ def run_ml_app():
     single_sample = np.array(encoded_result).reshape(1,-1)
     # st.write(single_sample)
 
-    model = load_model("LogReg.sav")
+    model = load_model("pipelineLogReg.sav")
 
-    prediction = model.predict(single_sample)
-    pred_proba = model.predict_proba(single_sample)
+    single_sample = model['scaler'].transform(single_sample)
+    prediction = model['model'].predict(single_sample)
+    pred_proba = model['model'].predict_proba(single_sample)
     st.write(prediction)
     st.write(pred_proba)
 
