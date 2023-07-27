@@ -24,7 +24,7 @@ desc_temp = """
 def main():
     stc.html(html_temp)
 
-    menu = ["Home","Machine Learning","Exploratory Data Analysis"]
+    menu = ["Home","Machine Learning"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Home":
@@ -32,8 +32,6 @@ def main():
         st.markdown(desc_temp, unsafe_allow_html=True)
     elif choice == "Machine Learning":
         run_ml_app()
-    elif choice == "Exploratory Data Analysis":
-        pass
     
 
 if __name__ == '__main__':
