@@ -15,9 +15,8 @@ desc_temp = """
             ### Sleep Disorder Prediction App
             This app will be used to predict if a person with condition is having sleeping disorder
             #### Data Source
-            - TBA
+            - https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset?select=Sleep_health_and_lifestyle_dataset.csv&sort=published
             #### App Content
-            - Exploratory Data Analysis
             - Machine Learning Section
             """
 
